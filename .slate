@@ -1,0 +1,63 @@
+alias 2mon1-terminal move screenOriginX+1;screenOriginY+33 780;1321 1
+alias 2mon2-terminal move screenOriginX+782;screenOriginY+10 840;1344 1
+alias 2mon-chrome move screenOriginX;screenOriginY 1562;1350 1
+alias 2mon-firefox move screenOriginX;screenOriginY screenSizeX;screenSizeY 0
+alias 2mon-evernote move screenOriginX+1317;screenOriginY 1023;762 1
+alias 2mon-adium move screenOriginX+2342;screenOriginY 213;760 1
+alias 2mon-slack move screenOriginX+1315;screenOriginY 1024;822 1
+alias 2mon-textedit move screenOriginX+1626;screenOriginY+747 484;604 1
+alias 2mon-calc move screenOriginX+2110;screenOriginY+747 484;604 1
+
+alias 1mon-chrome move screenOriginX;screenOriginY 1430;1018 0
+alias 1mon-firefox move screenOriginX;screenOriginY 1280;1018 0
+alias 1mon1-terminal move screenOriginX+1;screenOriginY+33 647;987 0
+alias 1mon2-terminal move screenOriginX+649;screenOriginY+11 825;1004 0
+alias 1mon-evernote move screenOriginX+121;screenOriginY 1023;760 0
+
+layout 2monitors 'Terminal':MAIN_FIRST ${2mon1-terminal} | ${2mon2-terminal}
+layout 2monitors 'Google Chrome' ${2mon-chrome} 
+layout 2monitors 'Firefox Developer Edition' ${2mon-firefox} 
+layout 2monitors 'Evernote' ${2mon-evernote} 
+layout 2monitors 'Adium':TITLE_ORDER=Contacts ${2mon-adium} 
+layout 2monitors 'Slack' ${2mon-slack} 
+layout 2monitors 'TextEdit' ${2mon-textedit} 
+layout 2monitors 'Calculator' ${2mon-calc} 
+
+layout 1monitors 'Terminal':MAIN_FIRST ${1mon1-terminal} | ${1mon2-terminal}
+layout 1monitors 'Google Chrome' ${1mon-chrome} 
+layout 1monitors 'Evernote' ${1mon-evernote} 
+layout 1monitors 'Firefox Developer Edition' ${1mon-firefox} 
+
+# When switching to 2 monitors, use 2 monitor layout by default
+default 2monitors count:2
+default 1monitors count:1
+
+bind l:cmd,shift layout 2monitors
+bind k:cmd,shift layout 1monitors
+#bind 1:ctrl sequence focus 'Terminal' | show 'Terminal'
+bind 1:ctrl sequence show 'Terminal' | focus 'Terminal' 
+bind `:ctrl focus 'Todoist'
+bind 2:ctrl focus 'Google Chrome'
+bind 3:ctrl focus 'Firefox Developer Edition'
+bind 4:ctrl focus 'Adium'
+bind 5:ctrl focus 'Slack'
+bind 6:ctrl focus 'Google Play Music Desktop Player'
+bind 7:ctrl focus 'TextEdit'
+bind 8:ctrl focus 'Calculator'
+bind 9:ctrl focus 'Evernote'
+bind 0:ctrl relaunch
+bind 1:ctrl,shift focus 'Finder'
+#bind up:alt,ctrl push up
+#bind down:alt,ctrl push down
+#bind left:alt,ctrl push left
+#bind right:alt,ctrl push right
+bind up:alt,ctrl nudge +0 -5%
+bind down:alt,ctrl nudge +0 +5%
+bind right:alt,ctrl nudge +5% +0
+bind left:alt,ctrl nudge -5% +0
+bind up:alt,shift,ctrl nudge +0 -5
+bind down:alt,shift,ctrl nudge +0 +5
+bind right:alt,shift,ctrl nudge +5 +0
+bind left:alt,shift,ctrl nudge -5 +0
+bind 0:alt,ctrl corner top-left resize:screenSizeX,screenSizeY
+
